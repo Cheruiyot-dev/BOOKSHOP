@@ -10,7 +10,7 @@ SECRET_KEY = 'your-secret-key-here'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-AALLOWED_HOSTS = ['*']
+AALLOWED_HOSTS = ['bookshop-1-qs70.onrender.com']
 
 
 # Application definition
