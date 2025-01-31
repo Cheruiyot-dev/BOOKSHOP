@@ -1,0 +1,85 @@
+<!-- frontend.html (Django Bookshop Frontend) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookshop Inventory</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bookshop Inventory</h1>
+
+    <!-- Book List Table -->
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Genre</th>
+            <th>Price</th>
+            <th>Stock</th>
+        </tr>
+        {% for book in books %}
+        <tr>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.genre }}</td>
+            <td>${{ book.price }}</td>
+            <td>{{ book.stock }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!-- Add Book Button -->
+    <a href="/add" class="btn">Add New Book</a>
+
+    <!-- Add Book Form -->
+    <div id="add-book-form" style="display: none;">
+        <h2>Add a New Book</h2>
+        <form method="post">
+            {% csrf_token %}
+            <label>Title:</label> <input type="text" name="title" required><br>
+            <label>Author:</label> <input type="text" name="author" required><br>
+            <label>Genre:</label> <input type="text" name="genre" required><br>
+            <label>Price:</label> <input type="number" name="price" step="0.01" required><br>
+            <label>Stock:</label> <input type="number" name="stock" required><br>
+            <button type="submit">Add Book</button>
+        </form>
+    </div>
+
+    <script>
+        document.querySelector(".btn").addEventListener("click", function() {
+            document.getElementById("add-book-form").style.display = "block";
+        });
+    </script>
+</body>
+</html>

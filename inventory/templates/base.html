@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIC NANDI AREA CHRISTIAN BOOKSHOP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        nav {
+            background-color: #0056b3;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+        footer {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>📚 AIC NANDI AREA BOOKSHOP</h1>
+    </header>
+
+    <nav>
+        <a href="{% url 'home' %}">🏠 Home</a> |
+        <a href="{% url 'book_list' %}">📖 Books</a> |
+        <a href="{% url 'inventory:sales_list' %}">🧾 Sales</a> |
+        <a href="{% url 'add_book' %}">➕ Add Book</a> |
+        <a href="{% url 'sell_book' %}">💰 Sell Book</a>
+    </nav>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2025 AIC Nandi Area Bookshop. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

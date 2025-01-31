@@ -1,0 +1,44 @@
+{% extends "inventory/base.html" %}
+
+{% block content %}
+    <h2>💰 Sell Book</h2>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
+        <div class="form-group">
+            <label for="id_book">📖 Select Book:</label>
+            {{ form.book }}
+            {% if form.book.errors %}
+                <div class="error">{{ form.book.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="id_quantity_sold">🔢 Quantity:</label>
+            {{ form.quantity_sold }}
+            {% if form.quantity_sold.errors %}
+                <div class="error">{{ form.quantity_sold.errors }}</div>
+            {% endif %}
+        </div>
+
+        <button type="submit">💾 Sell Book</button>
+    </form>
+
+    <br>
+    <a href="{% url 'inventory:book_list' %}">⬅️ Back to Book List</a>
+{% endblock %}

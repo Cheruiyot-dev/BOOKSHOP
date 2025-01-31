@@ -1,0 +1,116 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff; /* White background */
+    color: #000000; /* Black text */
+}
+
+/* Header */
+header {
+    background-color: #ffffff; /* White background */
+    padding: 20px;
+    text-align: center;
+    border-bottom: 5px solid #000000; /* Black border */
+}
+
+header h1 {
+    color: #000000; /* Black title */
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* Navigation Bar */
+nav {
+    background-color: #000000; /* Black background */
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: #ffffff; /* White text */
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #ff0000; /* Red highlight on hover */
+    text-decoration: underline;
+}
+
+/* Main Content */
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+/* Footer */
+footer {
+    background-color: #ffffff; /* White background */
+    color: #000000; /* Black text */
+    text-align: center;
+    padding: 10px;
+    border-top: 5px solid #000000; /* Black border */
+}
+
+/* Buttons */
+button {
+    background-color: #ff0000; /* Red buttons */
+    color: #ffffff; /* White text */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #000000; /* Black on hover */
+}
+
+/* Forms */
+input, select, textarea {
+    border: 2px solid #000000; /* Black border */
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+input[type="submit"] {
+    background-color: #ff0000; /* Red button */
+    color: white;
+    font-weight: bold;
+    border: none;
+}
+
+input[type="submit"]:hover {
+    background-color: #000000; /* Black on hover */
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 2px solid #000000; /* Black border */
+}
+
+th {
+    background-color: #ff0000; /* Red header */
+    color: white;
+    padding: 10px;
+}
+
+td {
+    padding: 10px;
+}
+
+/* Logo Placement */
+.logo {
+    display: block;
+    margin: 0 auto;
+    max-width: 200px;
+}

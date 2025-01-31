@@ -1,0 +1,245 @@
+{% extends "inventory/base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="receipt-wrapper">
+        <div class="receipt-container">
+            <div class="receipt-header">
+                <div class="company-info">
+                    <img src="{% static 'images/logo.png' %}" alt="AIC Nandi Logo" class="company-logo">
+                    <h2>AIC Nandi Area Church Council</h2>
+                    <p>Kapsabet-Eldoret rd, P.O. BOX 20 KAPSABET 30300 KENYA</p>
+                    <p class="website">www.aicnandi.org</p>
+                </div>
+            </div>
+
+            <div class="receipt-details">
+                <div class="detail-row">
+                    <span class="label">Receipt No:</span>
+                    <span class="value">#{{ sale.id }}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="label">📅 Date:</span>
+                    <span class="value">{{ sale.date|date:"d/m/Y H:i" }}</span>
+                </div>
+            </div>
+
+            <div class="receipt-items">
+                <div class="item-header">
+                    <span class="item-title">Item Details</span>
+                </div>
+                <div class="item-details">
+                    <div class="detail-row">
+                        <span class="label">📖 Book:</span>
+                        <span class="value">{{ sale.book.title }}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">✍️ Author:</span>
+                        <span class="value">{{ sale.book.author }}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">🔢 Quantity:</span>
+                        <span class="value">{{ sale.quantity_sold }}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">💰 Price per Book:</span>
+                        <span class="value">KES {{ sale.book.price|floatformat:2 }}</span>
+                    </div>
+                    <div class="detail-row total">
+                        <span class="label">💵 Total Amount:</span>
+                        <span class="value">KES {{ sale.total_price|floatformat:2 }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="receipt-footer">
+                <p>Thank you for your purchase!</p>
+                <p>Founded in 1895</p>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <a href="{% url 'inventory:sell_book' %}" class="button">💰 Sell Another Book</a>
+            <a href="{% url 'inventory:sales_list' %}" class="button">📋 View All Sales</a>
+            <a href="{% url 'inventory:home' %}" class="button">🏠 Home</a>
+            <button onclick="window.print()" class="button">🖨️ Print Receipt</button>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    :root {
+        --aic-red: #FF0000;
+        --aic-black: #000000;
+        --aic-gray: #555555;
+    }
+
+    .receipt-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        background-color: #f5f5f5;
+    }
+
+    .receipt-container {
+        width: 380px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        border: 2px solid var(--aic-black);
+    }
+
+    .company-logo {
+        max-width: 300px;
+        height: auto;
+        margin-bottom: 15px;
+    }
+
+    .company-info {
+        text-align: center;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 2px dashed var(--aic-red);
+    }
+
+    .company-info h2 {
+        font-size: 18px;
+        margin: 10px 0;
+        color: var(--aic-black);
+        font-weight: bold;
+    }
+
+    .company-info p {
+        color: var(--aic-gray);
+        margin: 5px 0;
+    }
+
+    .website {
+        color: var(--aic-red) !important;
+    }
+
+    .detail-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        padding: 5px 0;
+    }
+
+    .label {
+        font-weight: bold;
+        color: var(--aic-black);
+    }
+
+    .value {
+        text-align: right;
+        color: var(--aic-gray);
+    }
+
+    .receipt-items {
+        margin: 20px 0;
+        padding: 15px 0;
+        border-top: 2px dashed var(--aic-red);
+        border-bottom: 2px dashed var(--aic-red);
+    }
+
+    .item-header {
+        text-align: center;
+        margin-bottom: 15px;
+        font-weight: bold;
+        color: var(--aic-black);
+    }
+
+    .total {
+        margin-top: 15px;
+        padding-top: 10px;
+        border-top: 1px solid var(--aic-red);
+        font-weight: bold;
+    }
+
+    .receipt-footer {
+        text-align: center;
+        margin-top: 20px;
+        color: var(--aic-gray);
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin-top: 20px;
+        flex-wrap: wrap;
+    }
+
+    .button {
+        padding: 8px 16px;
+        background-color: var(--aic-red);
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    .button:hover {
+        background-color: #cc0000;
+    }
+
+    @media print {
+        @page {
+            size: 80mm 297mm;
+            margin: 0;
+        }
+
+        body {
+            background: none;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .receipt-wrapper {
+            padding: 0;
+            background-color: white;
+        }
+
+        .receipt-container {
+            width: 100%;
+            max-width: none;
+            box-shadow: none;
+            margin: 0;
+            padding: 10px;
+            border-radius: 0;
+            page-break-inside: avoid;
+        }
+
+        .action-buttons {
+            display: none;
+        }
+
+        .receipt-container * {
+            color: black !important;
+        }
+
+        .receipt-items {
+            border-top: 1px dashed #000;
+            border-bottom: 1px dashed #000;
+        }
+
+        .company-info {
+            border-bottom: 1px dashed #000;
+        }
+
+        .company-logo {
+            max-width: 250px;
+        }
+    }
+</style>
+{% endblock %}
